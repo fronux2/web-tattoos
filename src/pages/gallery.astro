@@ -1,0 +1,83 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Gallery from '../components/Gallery.astro';
+import { Image } from 'astro:assets'; // Imagen de fondo opcional
+---
+
+<MainLayout>
+  <!-- Hero Section -->
+  <div class="relative h-64 md:h-96 overflow-hidden">
+    
+    <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+      <h1 class="text-4xl md:text-6xl font-bold text-center text-white drop-shadow-lg">
+        GALERÍA <span class="text-amber-600">DE TRABAJOS</span>
+      </h1>
+    </div>
+  </div>
+
+  <!-- Filtros y Galería -->
+  <section class="container mx-auto px-4 py-12">
+    <!-- Filtros por estilo -->
+    <div class="flex flex-wrap gap-3 justify-center mb-12">
+      <button 
+        class="filter-btn px-4 py-2 rounded-full bg-amber-600 text-white font-medium hover:bg-amber-700 transition" 
+        data-filter="all"
+      >
+        Todos
+      </button>
+      <button 
+        class="filter-btn px-4 py-2 rounded-full bg-stone-700 text-stone-300 hover:bg-stone-600 transition" 
+        data-filter="floral"
+      >
+        Floral
+      </button>
+      <button 
+        class="filter-btn px-4 py-2 rounded-full bg-stone-700 text-stone-300 hover:bg-stone-600 transition" 
+        data-filter="blackwork"
+      >
+        Blackwork
+      </button>
+      <button 
+        class="filter-btn px-4 py-2 rounded-full bg-stone-700 text-stone-300 hover:bg-stone-600 transition" 
+        data-filter="tradicional"
+      >
+        Tradicional
+      </button>
+      <button 
+        class="filter-btn px-4 py-2 rounded-full bg-stone-700 text-stone-300 hover:bg-stone-600 transition" 
+        data-filter="realismo"
+      >
+        Realismo
+      </button>
+    </div>
+
+    <!-- Componente Gallery -->
+    <Gallery />
+
+    <!-- Script para filtros (client-side) -->
+    <script is:inline>
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const filter = btn.dataset.filter;
+          
+          // Actualizar botones activos
+          document.querySelectorAll('.filter-btn').forEach(b => {
+            b.classList.remove('bg-amber-600', 'text-white');
+            b.classList.add('bg-stone-700', 'text-stone-300');
+          });
+          btn.classList.add('bg-amber-600', 'text-white');
+          btn.classList.remove('bg-stone-700', 'text-stone-300');
+          
+          // Filtrar imágenes
+          document.querySelectorAll('[data-style]').forEach(item => {
+            if (filter === 'all' || item.dataset.style === filter) {
+              item.classList.remove('hidden');
+            } else {
+              item.classList.add('hidden');
+            }
+          });
+        });
+      });
+    </script>
+  </section>
+</MainLayout>

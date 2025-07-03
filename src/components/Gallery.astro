@@ -1,0 +1,45 @@
+---
+import { Image } from 'astro:assets';
+// Importar todas las imágenes
+import cara1 from '../../src/assets/images/tattoos/cara1.png';
+import drake from '../../src/assets/images/tattoos/drake.png';
+import flor4 from '../../src/assets/images/tattoos/flor4.png';
+import flor3 from '../../src/assets/images/tattoos/flor3.png';
+import lobo1 from '../../src/assets/images/tattoos/lobo1.png';
+import flor2 from '../../src/assets/images/tattoos/flor2.png';
+import flor1 from '../../src/assets/images/tattoos/flor1.png';
+
+// Datos de cada tatuaje (puedes agregar más detalles como estilo, año, etc.)
+const tattooWorks = [
+  { image: cara1, name: 'cara1', style: 'blackwork', alt: "Retrato en blanco y negro" },
+  { image: flor4, name: 'flor4', style: 'floral', alt: "Diseño floral colorido" },
+  { image: drake, name: 'drake', style: 'tradicional', alt: "Dragón estilo tradicional" },
+  { image: flor3, name: 'flor3', style: 'floral', alt: "Ramo de flores minimalista" },
+  { image: lobo1, name: 'lobo1', style: 'realismo', alt: "Lobo realista en brazo" },
+  { image: flor2, name: 'flor2', style: 'floral', alt: "Flor geométrica" },
+  { image: flor1, name: 'flor1', style: 'floral', alt: "Girasol en acuarela" },
+];
+---
+
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 py-8">
+  {tattooWorks.map((work) => (
+    <figure 
+      class="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-amber-500/20 transition-all"
+      data-style={work.style} 
+    >
+      <Image
+        src={work.image}
+        alt={work.alt}
+        width={400}
+        height={500}
+        class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500"
+        loading="lazy"
+        quality={80}
+      />
+      <figcaption class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+        <span class="text-sm text-amber-400 font-medium">{work.style}</span>
+        <p class="text-white text-xs mt-1">{work.alt}</p>
+      </figcaption>
+    </figure>
+  ))}
+</div>

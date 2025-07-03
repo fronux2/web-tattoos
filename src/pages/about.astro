@@ -1,0 +1,51 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import { Image } from 'astro:assets';
+import artistPhoto from '../assets/images/artist/foto-perfil.png'; // Ajusta la ruta
+---
+
+<MainLayout>
+  <section class="py-12 container mx-auto px-4">
+    <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center text-amber-600">SOBRE MÍ</h2>
+    
+    <div class="flex flex-col md:flex-row gap-8 items-center">
+      <div class="md:w-1/3">
+        <Image
+          src={artistPhoto}
+          alt="Foto del tatuador"
+          width={400}
+          height={500}
+          class="rounded-lg shadow-xl border-2 border-amber-600/30"
+          quality={80}
+        />
+      </div>
+
+      <div class="md:w-2/3 space-y-6">
+        <h3 class="text-2xl font-bold">Marcos, artista del tatuaje</h3>
+        <p class="text-stone-300">
+          Con más de 8 años de experiencia en el mundo del tatuaje, me especializo en estilos <span class="text-amber-400">realismo negro/gris</span> y <span class="text-amber-400">diseños florales</span>. Cada pieza que creo es un diálogo único con el cliente.
+        </p>
+        <p class="text-stone-300">
+          Mi enfoque combina técnica tradicional con influencias modernas, garantizando resultados que perduran en el tiempo tanto en calidad como en significado.
+        </p>
+        
+        <div class="pt-4">
+          <h4 class="font-bold text-lg mb-2">ESTILOS QUE DOMINO:</h4>
+          <ul class="grid grid-cols-2 gap-2 text-sm">
+            <li class="flex items-center"><span class="w-2 h-2 bg-amber-600 rounded-full mr-2"></span> Blackwork</li>
+            <li class="flex items-center"><span class="w-2 h-2 bg-amber-600 rounded-full mr-2"></span> Realismo</li>
+            <li class="flex items-center"><span class="w-2 h-2 bg-amber-600 rounded-full mr-2"></span> Floral</li>
+            <li class="flex items-center"><span class="w-2 h-2 bg-amber-600 rounded-full mr-2"></span> Tradicional</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-12 bg-stone-800/50 p-6 rounded-lg border-l-4 border-amber-600">
+      <h4 class="font-bold text-xl mb-3">MI FILOSOFÍA</h4>
+      <p class="italic text-stone-300">
+        "El tatuaje no es solo adornar la piel, es capturar historias en un lenguaje de tinta y dolor transformado en belleza."
+      </p>
+    </div>
+  </section>
+</MainLayout>

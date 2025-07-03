@@ -1,0 +1,24 @@
+---
+import Header from '../components/Header.astro';
+import '../styles/global.css';
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estudio de Tatuajes</title>
+  <link rel="stylesheet" href="/styles/global.css">
+  <link rel="preload" href="/fonts/custom.woff2" as="font" crossorigin>
+</head>
+<body class="bg-stone-900 text-stone-100 min-h-screen">
+  <Header />
+  <main class="container mx-auto px-4 py-8">
+    <slot />
+  </main>
+  <footer class="border-t border-amber-600 py-6 text-center">
+    <p>© {new Date().getFullYear()} Estudio de Tatuajes</p>
+  </footer>
+</body>
+</html>
