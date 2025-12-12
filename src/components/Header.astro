@@ -1,8 +1,38 @@
-<nav class="flex justify-between items-center py-6 border-b border-amber-600 px-16">
-  <div class="text-2xl font-bold">MARCO<span class="text-amber-600">INK</span></div>
-  <ul class="flex space-x-6">
-    <li><a href="/" class="hover:text-amber-500 transition">Inicio</a></li>
-    <li><a href="/about" class="hover:text-amber-500 transition">Sobre Mí</a></li>
-    <li><a href="/gallery" class="hover:text-amber-500 transition">Galería</a></li>
+<nav class="flex justify-between items-center py-6 border-b border-amber-600 px-4 sm:px-8 lg:px-16">
+  <div class="flex items-center">
+    <a href="/" class="text-2xl font-bold flex items-center gap-1">
+      <span>MARCO<span class="text-amber-600">INK</span></span>
+    </a>
+  </div>
+
+  <button id="nav-toggle" aria-controls="nav-list" aria-expanded="false" class="sm:hidden p-2 rounded-md border border-stone-700 text-stone-100">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+    </svg>
+  </button>
+
+  <ul id="nav-list" class="hidden sm:flex sm:items-center sm:space-x-6 flex-col sm:flex-row space-y-2 sm:space-y-0 mt-4 sm:mt-0 w-full sm:w-auto bg-stone-900/90 sm:bg-transparent p-4 sm:p-0 rounded sm:rounded-none shadow-sm sm:shadow-none">
+    <li>
+      <a href="/" class="block w-full text-center px-3 py-2 rounded hover:text-amber-500 hover:bg-stone-800 transition">Inicio</a>
+    </li>
+    <li>
+      <a href="/about" class="block w-full text-center px-3 py-2 rounded hover:text-amber-500 hover:bg-stone-800 transition">Sobre Mí</a>
+    </li>
+    <li>
+      <a href="/gallery" class="block w-full text-center px-3 py-2 rounded hover:text-amber-500 hover:bg-stone-800 transition">Galería</a>
+    </li>
   </ul>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const btn = document.getElementById('nav-toggle');
+      const nav = document.getElementById('nav-list');
+      if (!btn || !nav) return;
+      btn.addEventListener('click', function () {
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        nav.classList.toggle('hidden');
+      });
+    });
+  </script>
 </nav>
