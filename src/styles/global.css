@@ -1,1 +1,43 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap');
+
+@theme {
+  /* Ink & Brass -- tattoo studio direction. One hue (warm ink), one accent (aged brass). */
+  --color-ink: #14110d;
+  --color-ink-surface: #1d1914;
+  --color-ink-elevated: #241d16;
+  --color-ink-inset: #191510;
+
+  --color-brass: #c68a3d;
+  --color-brass-bright: #dda254;
+
+  --color-paper: #e7d9b8;
+  --color-paper-ink: #1c1712;
+
+  --color-oxblood: #8b3a2b;
+
+  --color-text-primary: #f2ede3;
+  --color-text-secondary: #b8ad9c;
+  --color-text-muted: #7a7267;
+
+  --color-hairline: rgb(198 138 61 / 0.14);
+  --color-hairline-strong: rgb(198 138 61 / 0.32);
+
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+body {
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  text-wrap: balance;
+}
+
+.font-variant-tabular {
+  font-variant-numeric: tabular-nums;
+}

@@ -13,13 +13,15 @@ import '../styles/global.css';
   <meta name="description" content="Artista especializado en tatuajes realistas y florales. Con sede en Buenos Aires." />
   <meta name="keywords" content="tatuajes, arte corporal, artista tatuador, blackwork, floral" />
 </head>
-  <body class="bg-stone-900 text-stone-100 min-h-screen">
+  <body class="bg-ink text-text-primary min-h-screen font-body">
   <Header />
   <main class="container mx-auto px-4 sm:px-8 lg:px-16 py-8">
     <slot />
   </main>
-  <footer class="border-t border-amber-600 py-6 text-center">
-    <p>© {new Date().getFullYear()} Estudio de Tatuajes</p>
+  <footer class="border-t border-hairline py-8 text-center">
+    <p class="font-mono text-[11px] uppercase tracking-[0.14em] text-text-muted">
+      © {new Date().getFullYear()} Marco Ink — Buenos Aires
+    </p>
   </footer>
 </body>
 </html>

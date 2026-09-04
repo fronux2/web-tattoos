@@ -1,60 +1,69 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
+
+const inputClass = "w-full px-4 py-2.5 bg-ink-inset border border-hairline-strong rounded-[3px] text-text-primary placeholder:text-text-muted focus:ring-1 focus:ring-brass focus:border-brass focus:outline-none transition-colors";
+const labelClass = "block font-mono text-[11px] uppercase tracking-[0.1em] text-text-secondary mb-2";
 ---
 
 <MainLayout>
-  <form class="space-y-4" action={`https://formspree.io/f/${import.meta.env.PUBLIC_FORMSPREE_ID}`} method="POST">
-    <div>
-      <label for="name" class="block text-sm font-medium text-stone-300 mb-1">Nombre</label>
-      <input 
-        type="text" 
-        id="name" 
-        name="name" 
-        required
-        class="w-full px-4 py-2 bg-stone-700 border border-stone-600 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+  <section class="py-16 max-w-lg mx-auto">
+    <p class="font-mono text-[11px] uppercase tracking-[0.14em] text-brass-bright mb-3 text-center">Hablemos</p>
+    <h2 class="text-3xl md:text-4xl font-semibold mb-3 text-center">Contacto</h2>
+    <p class="text-text-secondary text-center mb-12">Contame tu idea y coordinamos una consulta</p>
+
+    <form class="space-y-6" action={`https://formspree.io/f/${import.meta.env.PUBLIC_FORMSPREE_ID}`} method="POST">
+      <div>
+        <label for="name" class={labelClass}>Nombre</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          required
+          class={inputClass}
+        >
+      </div>
+
+      <div>
+        <label for="email" class={labelClass}>Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          class={inputClass}
+        >
+      </div>
+
+      <div>
+        <label for="message" class={labelClass}>Mensaje</label>
+        <textarea
+          id="message"
+          name="message"
+          rows="4"
+          required
+          class={inputClass}
+        ></textarea>
+      </div>
+
+      <div>
+        <label for="tipo" class={labelClass}>Interesado en</label>
+        <select
+          id="tipo"
+          name="tipo"
+          class={inputClass}
+        >
+          <option value="consulta">Consulta general</option>
+          <option value="presupuesto">Presupuesto de tatuaje</option>
+          <option value="piercing">Servicio de piercing</option>
+        </select>
+      </div>
+
+      <button
+        type="submit"
+        class="w-full bg-brass hover:bg-brass-bright text-paper-ink font-medium py-3 px-4 rounded-[3px] transition-colors mt-2"
       >
-    </div>
-  
-    <div>
-      <label for="email" class="block text-sm font-medium text-stone-300 mb-1">Email</label>
-      <input 
-        type="email" 
-        id="email" 
-        name="email" 
-        required
-        class="w-full px-4 py-2 bg-stone-700 border border-stone-600 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
-      >
-    </div>
-  
-    <div>
-      <label for="message" class="block text-sm font-medium text-stone-300 mb-1">Mensaje</label>
-      <textarea 
-        id="message" 
-        name="message" 
-        rows="4"
-        required
-        class="w-full px-4 py-2 bg-stone-700 border border-stone-600 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
-      ></textarea>
-    </div>
-  
-    <div>
-      <label for="tipo" class="block text-sm font-medium text-stone-300 mb-1">Interesado en:</label>
-      <select 
-        id="tipo" 
-        name="tipo"
-        class="w-full px-4 py-2 bg-stone-700 border border-stone-600 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
-      >
-        <option value="consulta">Consulta general</option>
-        <option value="presupuesto">Presupuesto de tatuaje</option>
-        <option value="piercing">Servicio de piercing</option>
-      </select>
-    </div>
-  
-    <button 
-      type="submit"
-      class="w-full bg-amber-600 hover:bg-amber-700 text-white font-medium py-2 px-4 rounded-lg transition mt-4"
-    >
-      Enviar mensaje
-    </button>
-  </form>
+        Enviar mensaje
+      </button>
+    </form>
+  </section>
 </MainLayout>
