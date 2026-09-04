@@ -1,6 +1,8 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
 import { Image } from 'astro:assets';
+import Icon from '../components/Icon.astro';
+import FlashTag from '../components/FlashTag.astro';
 import artistPhoto from '../../src/assets/images/tattoos/cara1.png';
 import tattoo1 from '../../src/assets/images/tattoos/cara1.png';
 import tattoo2 from '../../src/assets/images/tattoos/flor4.png';
@@ -13,20 +15,32 @@ const featuredTattoos = [
   { image: tattoo3, style: "Tradicional", alt: "Dragón estilo tradicional" }
 ];
 
-const services = [
-  { title: "Tatuajes Personalizados", desc: "Diseños únicos creados especialmente para ti", icon: "✍️" },
-  { title: "Cover-ups", desc: "Transformamos tatuajes antiguos en nuevas obras de arte", icon: "🔄" },
-  { title: "Piercings", desc: "Profesionales con materiales de primera calidad", icon: "✨" },
-  { title: "Asesoramiento", desc: "Te guiamos en tu primera experiencia de tatuaje", icon: "💬" }
+const specialties = [
+  { icon: 'blackwork' as const, title: 'Blackwork', desc: 'Tatuajes en negro puro con alto contraste y detalles precisos' },
+  { icon: 'floral' as const, title: 'Floral', desc: 'Diseños botánicos realistas o con toques de acuarela' },
+  { icon: 'tradicional' as const, title: 'Tradicional', desc: 'Estilo clásico con líneas gruesas y colores vibrantes' },
+  { icon: 'realismo' as const, title: 'Realismo', desc: 'Retratos y diseños que capturan cada detalle con precisión' },
 ];
 
+const process = [
+  { title: 'Consulta inicial', desc: 'Conversamos sobre tu idea, estilo preferido, ubicación y tamaño. Te asesoro sobre lo que funciona mejor.' },
+  { title: 'Diseño personalizado', desc: 'Creo un boceto exclusivo basado en nuestra conversación. Realizamos ajustes hasta que sea perfecto.' },
+  { title: 'Sesión de tatuaje', desc: 'Con materiales esterilizados y de primera calidad, transformamos el diseño en una obra de arte en tu piel.' },
+];
+
+const services = [
+  { title: "Tatuajes Personalizados", desc: "Diseños únicos creados especialmente para ti", icon: 'needle' as const },
+  { title: "Cover-ups", desc: "Transformamos tatuajes antiguos en nuevas obras de arte", icon: 'coverup' as const },
+  { title: "Piercings", desc: "Profesionales con materiales de primera calidad", icon: 'sparkle' as const },
+  { title: "Asesoramiento", desc: "Te guiamos en tu primera experiencia de tatuaje", icon: 'chat' as const },
+];
 ---
 
 <MainLayout>
-  <!-- Hero Section Mejorada -->
-  <section class="relative py-24 md:py-32 overflow-hidden">
-    <div class="absolute inset-0 bg-black/60 z-10"></div>
-    <Image 
+  <!-- Hero -->
+  <section class="relative py-24 md:py-32 overflow-hidden -mx-4 sm:-mx-8 lg:-mx-16 px-4 sm:px-8 lg:px-16">
+    <div class="absolute inset-0 bg-gradient-to-r from-ink via-ink/85 to-ink/40 z-10"></div>
+    <Image
       format="webp"
       src={artistPhoto}
       alt="Artista trabajando"
@@ -38,20 +52,21 @@ const services = [
       quality={75}
       decoding="async"
     />
-    
-    <div class="container mx-auto px-4 relative z-20">
+
+    <div class="container mx-auto relative z-20">
       <div class="max-w-2xl">
-        <h1 class="text-4xl md:text-6xl font-bold mb-6 text-white">
-          Arte que perdura en la <span class="text-amber-500">piel</span>
+        <p class="font-mono text-[11px] uppercase tracking-[0.16em] text-brass-bright mb-5">Estudio de tatuajes — Buenos Aires</p>
+        <h1 class="text-4xl md:text-6xl font-semibold mb-6 text-text-primary leading-[1.05]">
+          Arte que perdura en la <span class="text-brass">piel</span>
         </h1>
-        <p class="text-xl text-amber-100 mb-8">
+        <p class="text-lg text-text-secondary mb-9 max-w-md">
           Tatuajes personalizados con pasión, técnica y estilo único
         </p>
         <div class="flex flex-wrap gap-4">
-          <a href="/gallery" class="bg-amber-600 hover:bg-amber-700 px-8 py-4 rounded-lg font-medium text-lg transition">
+          <a href="/gallery" class="bg-brass hover:bg-brass-bright text-paper-ink px-7 py-3.5 rounded-[3px] font-medium transition-colors">
             Ver galería
           </a>
-          <a href="/contact" class="bg-transparent border-2 border-amber-600 text-amber-500 hover:bg-amber-600/20 px-8 py-4 rounded-lg font-medium text-lg transition">
+          <a href="/contact" class="border border-hairline-strong text-text-primary hover:bg-ink-elevated px-7 py-3.5 rounded-[3px] font-medium transition-colors">
             Reservar cita
           </a>
         </div>
@@ -59,141 +74,87 @@ const services = [
     </div>
   </section>
 
-  <!-- Sección de Especialidades -->
-  <section class="py-16 bg-stone-900">
-    <div class="container mx-auto px-4">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold mb-4">Estilos que <span class="text-amber-500">domino</span></h2>
-        <p class="text-stone-400 max-w-2xl mx-auto">Cada estilo tiene su lenguaje, y yo hablo varios con fluidez</p>
+  <!-- Especialidades -->
+  <section class="py-20">
+    <div class="container mx-auto">
+      <div class="mb-14 max-w-xl">
+        <p class="font-mono text-[11px] uppercase tracking-[0.14em] text-brass-bright mb-3">Especialidades</p>
+        <h2 class="text-3xl md:text-4xl font-semibold">Estilos que domino</h2>
+        <p class="text-text-secondary mt-3">Cada estilo tiene su lenguaje, y yo hablo varios con fluidez</p>
       </div>
-      
-      <div class="grid md:grid-cols-4 gap-8">
-        <div class="bg-stone-800/50 p-8 rounded-xl border border-amber-600/30 hover:border-amber-500 transition-all hover:-translate-y-1">
-          <div class="text-amber-500 text-5xl mb-4">⚫</div>
-          <h3 class="text-xl font-bold mb-2">Blackwork</h3>
-          <p class="text-stone-400">Tatuajes en negro puro con alto contraste y detalles precisos</p>
-        </div>
-        
-        <div class="bg-stone-800/50 p-8 rounded-xl border border-amber-600/30 hover:border-amber-500 transition-all hover:-translate-y-1">
-          <div class="text-amber-500 text-5xl mb-4">🌺</div>
-          <h3 class="text-xl font-bold mb-2">Floral</h3>
-          <p class="text-stone-400">Diseños botánicos realistas o con toques de acuarela</p>
-        </div>
-        
-        <div class="bg-stone-800/50 p-8 rounded-xl border border-amber-600/30 hover:border-amber-500 transition-all hover:-translate-y-1">
-          <div class="text-amber-500 text-5xl mb-4">🐉</div>
-          <h3 class="text-xl font-bold mb-2">Tradicional</h3>
-          <p class="text-stone-400">Estilo clásico con líneas gruesas y colores vibrantes</p>
-        </div>
-        
-        <div class="bg-stone-800/50 p-8 rounded-xl border border-amber-600/30 hover:border-amber-500 transition-all hover:-translate-y-1">
-          <div class="text-amber-500 text-5xl mb-4">👁️</div>
-          <h3 class="text-xl font-bold mb-2">Realismo</h3>
-          <p class="text-stone-400">Retratos y diseños que capturan cada detalle con precisión</p>
-        </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-hairline rounded-[3px] overflow-hidden">
+        {specialties.map((s) => (
+          <div class="bg-ink-surface p-7 hover:bg-ink-elevated transition-colors">
+            <Icon name={s.icon} class="w-8 h-8 text-brass mb-5" />
+            <h3 class="text-lg font-semibold mb-2 font-display">{s.title}</h3>
+            <p class="text-text-secondary text-sm leading-relaxed">{s.desc}</p>
+          </div>
+        ))}
       </div>
     </div>
   </section>
 
-  <!-- Trabajos Destacados -->
-  <section class="py-16">
-    <div class="container mx-auto px-4">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold mb-4">Trabajos <span class="text-amber-500">destacados</span></h2>
-        <p class="text-stone-400 max-w-2xl mx-auto">Una selección de mis piezas favoritas</p>
+  <!-- Trabajos destacados -->
+  <section class="py-20 border-t border-hairline">
+    <div class="container mx-auto">
+      <div class="mb-14 max-w-xl">
+        <p class="font-mono text-[11px] uppercase tracking-[0.14em] text-brass-bright mb-3">Selección</p>
+        <h2 class="text-3xl md:text-4xl font-semibold">Trabajos destacados</h2>
+        <p class="text-text-secondary mt-3">Una selección de mis piezas favoritas</p>
       </div>
-      
+
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {featuredTattoos.map((tattoo, index) => (
-          <div class="group relative overflow-hidden rounded-xl">
+        {featuredTattoos.map((tattoo) => (
+          <figure class="group relative overflow-hidden rounded-[2px] border border-hairline">
             <Image
               format="webp"
               src={tattoo.image}
               alt={tattoo.alt}
               width={600}
               height={800}
-              class="w-full h-96 object-cover group-hover:scale-105 transition-transform duration-500"
+              class="w-full h-96 object-cover group-hover:scale-[1.03] transition-transform duration-500"
               loading="lazy"
               quality={80}
             />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-6 opacity-0 group-hover:opacity-100 transition-opacity">
-              <div>
-                <span class="text-amber-400 font-medium">{tattoo.style}</span>
-                <p class="text-white">{tattoo.alt}</p>
-              </div>
-            </div>
-          </div>
+            <FlashTag label={tattoo.style} class="absolute -top-1.5 -right-2" />
+            <figcaption class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-ink/90 to-transparent p-5 pt-10">
+              <p class="text-text-primary text-sm">{tattoo.alt}</p>
+            </figcaption>
+          </figure>
         ))}
       </div>
-      
-      <div class="text-center mt-12">
-        <a href="/gallery" class="inline-flex items-center px-6 py-3 border border-amber-600 text-amber-500 hover:bg-amber-600/10 rounded-lg transition">
+
+      <div class="text-center mt-14">
+        <a href="/gallery" class="inline-flex items-center gap-2 px-6 py-3 border border-hairline-strong text-brass-bright hover:bg-ink-elevated rounded-[3px] transition-colors">
           Ver galería completa
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-          </svg>
+          <Icon name="arrow" class="w-4 h-4" />
         </a>
       </div>
     </div>
   </section>
 
-  <!-- Proceso de Trabajo -->
-  <section class="py-16 bg-stone-900">
-    <div class="container mx-auto px-4">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold mb-4">Mi <span class="text-amber-500">proceso</span></h2>
-        <p class="text-stone-400 max-w-2xl mx-auto">Así trabajo para crear tu tatuaje perfecto</p>
+  <!-- Proceso -->
+  <section class="py-20 border-t border-hairline">
+    <div class="container mx-auto">
+      <div class="mb-14 max-w-xl">
+        <p class="font-mono text-[11px] uppercase tracking-[0.14em] text-brass-bright mb-3">Cómo trabajo</p>
+        <h2 class="text-3xl md:text-4xl font-semibold">Mi proceso</h2>
+        <p class="text-text-secondary mt-3">Así trabajo para crear tu tatuaje perfecto</p>
       </div>
-      
-      <div class="max-w-4xl mx-auto">
-        <div class="flex flex-col md:flex-row items-center mb-12">
-          <div class="md:w-1/3 mb-6 md:mb-0 flex justify-center">
-            <div class="w-16 h-16 rounded-full bg-amber-600 flex items-center justify-center text-2xl">1</div>
-          </div>
-          <div class="md:w-2/3">
-            <h3 class="text-xl font-bold mb-2">Consulta inicial</h3>
-            <p class="text-stone-400">Conversamos sobre tu idea, estilo preferido, ubicación y tamaño. Te asesoro sobre lo que funciona mejor.</p>
-          </div>
-        </div>
-        
-        <div class="flex flex-col md:flex-row items-center mb-12">
-          <div class="md:w-1/3 mb-6 md:mb-0 flex justify-center">
-            <div class="w-16 h-16 rounded-full bg-amber-600 flex items-center justify-center text-2xl">2</div>
-          </div>
-          <div class="md:w-2/3">
-            <h3 class="text-xl font-bold mb-2">Diseño personalizado</h3>
-            <p class="text-stone-400">Creo un boceto exclusivo basado en nuestra conversación. Realizamos ajustes hasta que sea perfecto.</p>
-          </div>
-        </div>
-        
-        <div class="flex flex-col md:flex-row items-center">
-          <div class="md:w-1/3 mb-6 md:mb-0 flex justify-center">
-            <div class="w-16 h-16 rounded-full bg-amber-600 flex items-center justify-center text-2xl">3</div>
-          </div>
-          <div class="md:w-2/3">
-            <h3 class="text-xl font-bold mb-2">Sesión de tatuaje</h3>
-            <p class="text-stone-400">Con materiales esterilizados y de primera calidad, transformamos el diseño en una obra de arte en tu piel.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Servicios -->
-  <section class="py-16">
-    <div class="container mx-auto px-4">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold mb-4">Mis <span class="text-amber-500">servicios</span></h2>
-        <p class="text-stone-400 max-w-2xl mx-auto">Más que tatuajes, experiencias transformadoras</p>
-      </div>
-      
-      <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-        {services.map((service, index) => (
-          <div class="flex items-start p-6 bg-stone-800/50 rounded-xl border border-stone-700 hover:border-amber-500 transition-all">
-            <div class="text-3xl mr-4 text-amber-500">{service.icon}</div>
-            <div>
-              <h3 class="text-xl font-bold mb-2">{service.title}</h3>
-              <p class="text-stone-400">{service.desc}</p>
+      <div class="max-w-3xl">
+        {process.map((step, i) => (
+          <div class="flex gap-6 pb-10 last:pb-0">
+            <div class="flex flex-col items-center">
+              <span class="flex-none w-11 h-11 rounded-full border border-hairline-strong flex items-center justify-center font-mono text-sm text-brass-bright">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              {i < process.length - 1 && <span class="w-px flex-1 bg-hairline mt-2"></span>}
+            </div>
+            <div class="pt-1.5">
+              <h3 class="text-xl font-semibold mb-2 font-display">{step.title}</h3>
+              <p class="text-text-secondary leading-relaxed">{step.desc}</p>
             </div>
           </div>
         ))}
@@ -201,12 +162,36 @@ const services = [
     </div>
   </section>
 
-  <!-- CTA Final -->
-  <section class="py-20 bg-gradient-to-r from-stone-900 to-amber-900/30">
-    <div class="container mx-auto px-4 text-center">
-      <h2 class="text-3xl md:text-4xl font-bold mb-6">¿Listo para transformar tu piel en arte?</h2>
-      <p class="text-xl text-amber-100 mb-8 max-w-2xl mx-auto">Agenda una consulta gratuita para hablar sobre tu próximo tatuaje</p>
-      <a href="/contact" class="inline-block bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-12 rounded-full text-lg transition shadow-lg shadow-amber-600/30">
+  <!-- Servicios -->
+  <section class="py-20 border-t border-hairline">
+    <div class="container mx-auto">
+      <div class="mb-14 max-w-xl">
+        <p class="font-mono text-[11px] uppercase tracking-[0.14em] text-brass-bright mb-3">Servicios</p>
+        <h2 class="text-3xl md:text-4xl font-semibold">Mis servicios</h2>
+        <p class="text-text-secondary mt-3">Más que tatuajes, experiencias transformadoras</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-px bg-hairline rounded-[3px] overflow-hidden max-w-4xl">
+        {services.map((service) => (
+          <div class="flex items-start gap-5 p-7 bg-ink-surface hover:bg-ink-elevated transition-colors">
+            <Icon name={service.icon} class="w-6 h-6 text-brass flex-none mt-1" />
+            <div>
+              <h3 class="text-lg font-semibold mb-1.5 font-display">{service.title}</h3>
+              <p class="text-text-secondary text-sm leading-relaxed">{service.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA final -->
+  <section class="py-24 border-t border-hairline bg-ink-surface -mx-4 sm:-mx-8 lg:-mx-16 px-4 sm:px-8 lg:px-16">
+    <div class="container mx-auto text-center">
+      <p class="font-mono text-[11px] uppercase tracking-[0.14em] text-brass-bright mb-4">Próximo paso</p>
+      <h2 class="text-3xl md:text-4xl font-semibold mb-5 max-w-2xl mx-auto">¿Listo para transformar tu piel en arte?</h2>
+      <p class="text-lg text-text-secondary mb-9 max-w-xl mx-auto">Agenda una consulta gratuita para hablar sobre tu próximo tatuaje</p>
+      <a href="/contact" class="inline-block bg-brass hover:bg-brass-bright text-paper-ink font-medium py-4 px-12 rounded-[3px] transition-colors">
         Contactar ahora
       </a>
     </div>

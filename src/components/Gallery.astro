@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets';
+import FlashTag from './FlashTag.astro';
 // Importar todas las imágenes
 import cara1 from '../../src/assets/images/tattoos/cara1.png';
 import drake from '../../src/assets/images/tattoos/drake.png';
@@ -23,22 +24,22 @@ const tattooWorks = [
 
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 py-8">
   {tattooWorks.map((work) => (
-    <figure 
-      class="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-amber-500/20 transition-all"
-      data-style={work.style} 
+    <figure
+      class="group relative overflow-hidden rounded-[2px] border border-hairline"
+      data-style={work.style}
     >
       <Image
         src={work.image}
         alt={work.alt}
         width={400}
         height={500}
-        class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500"
+        class="w-full h-80 object-cover group-hover:scale-[1.03] transition-transform duration-500"
         loading="lazy"
         quality={80}
       />
-      <figcaption class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
-        <span class="text-sm text-amber-400 font-medium">{work.style}</span>
-        <p class="text-white text-xs mt-1">{work.alt}</p>
+      <FlashTag label={work.style} class="absolute -top-1.5 -right-2" />
+      <figcaption class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-ink/90 to-transparent p-4 pt-10">
+        <p class="text-text-primary text-xs">{work.alt}</p>
       </figcaption>
     </figure>
   ))}
